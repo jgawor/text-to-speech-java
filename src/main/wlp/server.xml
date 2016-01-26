@@ -1,0 +1,17 @@
+<server>
+
+    <featureManager>
+        <feature>jsp-2.3</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080"
+                  httpsPort="9443" >
+        <tcpOptions soReuseAddr="true"/>
+    </httpEndpoint>
+
+    <application name="text2speech" context-root="/text2speech" location="${appLocation}" type="war">
+    </application>
+    
+</server>
