@@ -11,7 +11,7 @@
         <tcpOptions soReuseAddr="true"/>
     </httpEndpoint>
 
-    <application name="text2speech" context-root="/text2speech" location="${appLocation}" type="war">
+    <application name="text2speech" context-root="/text2speech" location="${wlp.install.dir}/../${appLocation}" type="war">
     </application>
     
 </server>

@@ -28,7 +28,6 @@
             <groupId>com.ibm.watson.developer_cloud</groupId>
             <artifactId>java-sdk</artifactId>
             <version>2.8.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -38,7 +37,7 @@
                 <plugin>
                     <groupId>net.wasdev.wlp.maven.plugins</groupId>
                     <artifactId>liberty-maven-plugin</artifactId>
-                    <version>1.1</version>
+                    <version>1.2-SNAPSHOT</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -49,8 +48,12 @@
                 <configuration>
                     <configFile>src/main/wlp/server.xml</configFile>
                     <bootstrapProperties>
-                        <appLocation>../../../../../${project.build.finalName}</appLocation>
+                        <appLocation>${project.build.finalName}</appLocation>
                     </bootstrapProperties>
+                    <install>
+                        <version>2016.+</version>
+                    </install>
+                    <assemblyInstallDirectory>${project.build.directory}</assemblyInstallDirectory>
                 </configuration>
             </plugin>
         </plugins>
