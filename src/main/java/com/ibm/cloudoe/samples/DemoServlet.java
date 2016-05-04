@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 IBM Corp. All Rights Reserved.
+ * Copyright 2014-2016 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
 
-
 public class DemoServlet extends HttpServlet {
     
 	private static Logger logger = Logger.getLogger(DemoServlet.class.getName());
@@ -51,10 +50,7 @@ public class DemoServlet extends HttpServlet {
 		if (req.getParameter("text") == null || req.getParameter("voice") == null) {
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 		} else {
-			boolean download = false;
-			if (req.getParameter("download") != null && req.getParameter("download").equalsIgnoreCase("true")) {
-				download = true;
-			}
+			boolean download = "true".equalsIgnoreCase(req.getParameter("download"));
 
 			InputStream in = null;
 			OutputStream out = null;	
@@ -76,7 +72,6 @@ public class DemoServlet extends HttpServlet {
 		         while ((read = in.read(buffer)) != -1) {
 		             out.write(buffer, 0, read);
 		         }
-
 			} catch (Exception e) {
 				// Log something and return an error message
 				logger.log(Level.SEVERE, "got error: " + e.getMessage(), e);
