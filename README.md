@@ -32,7 +32,7 @@ $ mvn install
   $ cf create-service text_to_speech standard text-to-speech-service
   ```
 
-5. [Build the application][].
+5. [Build the application](#building-the-application).
 
 6. Deploy the application. Ensure the `<application-name>` is something unique.
  
@@ -44,49 +44,37 @@ $ mvn install
 
 ## Running locally
 
-  The application uses the WebSphere Liberty profile runtime as its server,
-  so you need to download and install the profile as part of the steps below.
+The application uses [WebSphere Liberty](https://developer.ibm.com/wasdev/websphere-liberty/) as its server. Liberty provides the [bluemixUtility](http://www14.software.ibm.com/webapp/wsbroker/redirect?version=phil&product=was-base-dist&topic=rwlp_blmx_utility) command line client that makes it easy for applications to use certain Bluemix services.
 
-1. Copy the credentials from your `text-to-speech-service-standard` service in Bluemix to
-   `DemoServlet.java`. You can use the following command to see the
-   credentials:
+1. [Build the application](#building-the-application).
 
-    ```sh
-    $ cf env <application-name>
-    ```
+2. Initialize Liberty server for the application. Maven will automatically download and install WebSphere Liberty.
 
-   Example output:
+  ```sh
+  $ mvn liberty:create-server
+  ```
 
-    ```sh
-    System-Provided:
-    {
-    "VCAP_SERVICES": {
-      "text_to_speech": [{
-          "credentials": {
-            "url": "<url>",
-            "password": "<password>",
-            "username": "<username>"
-          },
-        "label": "text_to_speech",
-        "name": "text-to-speech-service",
-        "plan": "standard"
-     }]
-    }
-    }
-    ```
+3. Log in to Bluemix and create `Text to Speech` service instance as described in [Deploying to Bluemix](#deploying-to-bluemix) steps 1-4.
 
-	You need to copy the `username`, `password`, and `url`.
+4. Use `bluemixUtility` to import configuration for the `Text to Speech` service.
 
-2. Install the [Liberty profile runtime][liberty] (for Mac OSX, check this
-   [guide][liberty_mac]).
+  ```sh
+  $ ./target/wlp/bin/bluemixUtility import text-to-speech-service
+  ```
 
-3. Create a Liberty profile server in Eclipse.
+5. Bind the imported configuration to Liberty server.
 
-4. Add the application to the server.
+  ```sh
+  $ ./target/wlp/bin/bluemixUtility bind defaultServer text-to-speech-service
+  ```
 
-5. Start the server.
+6. Start the application.
 
-6. Go to `http://localhost:9080/app/` to see the running application.
+   ```sh
+   $ mvn liberty:run-server
+   ```
+
+   Once started, the application will be available at `http://localhost/text2speech`.
 
 ## Troubleshooting
 
