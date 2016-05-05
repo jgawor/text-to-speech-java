@@ -44,7 +44,7 @@ $ mvn install
 
 ## Running locally
 
-The application uses [WebSphere Liberty](https://developer.ibm.com/wasdev/websphere-liberty/) as its server. Liberty provides the [bluemixUtility](http://www14.software.ibm.com/webapp/wsbroker/redirect?version=phil&product=was-base-dist&topic=rwlp_blmx_utility) command line client that makes it easy for applications to use certain Bluemix services.
+The application uses [WebSphere Liberty](https://developer.ibm.com/wasdev/websphere-liberty/) as its server. Liberty provides the [bluemixUtility](http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/rwlp_blmx_utility.html) command line client that makes it easy for applications to use certain Bluemix services.
 
 1. [Build the application](#building-the-application).
 
@@ -74,7 +74,7 @@ The application uses [WebSphere Liberty](https://developer.ibm.com/wasdev/websph
    $ mvn liberty:run-server
    ```
 
-   Once started, the application will be available at `http://localhost/text2speech`.
+   Once started, the application will be available at [http://localhost:8080/text2speech](http://localhost:8080/text2speech).
 
 ## Troubleshooting
 
