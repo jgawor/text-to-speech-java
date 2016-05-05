@@ -6,7 +6,15 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
-## Getting Started
+## Building the application
+
+Use [Apache Maven](https://maven.apache.org/) to build the application.
+
+```sh
+$ mvn install
+```
+
+## Deploying to Bluemix
 
 1. Create a Bluemix Account
 
@@ -14,47 +22,25 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool
 
-3. Edit the `manifest.yml` file and change the `<application-name>` to something unique.
-  ```none
-  applications:
-  - services:
-    - text-to-speech-service
-    name: <application-name>
-    path: webApp.war
-    memory: 512M
-  ```
-
-  The name you use determines your initial application URL, e.g.,
-  `<application-name>.mybluemix.net`.
-
-4. Connect to Bluemix in the command line tool.
+3. Connect to Bluemix in the command line tool.
   ```sh
-  $ cf api https://api.ng.bluemix.net
-  $ cf login -u <your-user-ID>
+  $ cf login -a https://api.ng.bluemix.net
   ```
 
-5. Create the Text to Speech service in Bluemix.
+4. Create the `Text to Speech` service in Bluemix.
   ```sh
   $ cf create-service text_to_speech standard text-to-speech-service
   ```
 
-6. Download and install the [ant][ant] compiler.
+5. [Build the application][].
 
-7. Build the project.
-
-   You need to use the Apache `ant` compiler to build the Java application.
-   For information about the `ant` compiler and to download a copy for your
-   operating system, visit ant.apache.org.
-
+6. Deploy the application. Ensure the `<application-name>` is something unique.
+ 
   ```sh
-  $ ant
+  $ cf push <application-name> -p target/text-to-speech-1.0-SNAPSHOT.war
   ```
-
-8. Push it live!
-  ```sh
-  $ cf push -p outut/webApp.war
-  ```
-
+ 
+  Once deployed, the application will be available at `http://<application-name>.mybluemix.net`.
 
 ## Running locally
 
