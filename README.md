@@ -74,7 +74,7 @@ The application uses [WebSphere Liberty](https://developer.ibm.com/wasdev/websph
    $ mvn liberty:run-server
    ```
 
-   Once started, the application will be available at [http://localhost:8080/text2speech](http://localhost:8080/text2speech).
+   Once started, the application will be available at [http://localhost:9080/text2speech](http://localhost:9080/text2speech).
 
 ## Troubleshooting
 
